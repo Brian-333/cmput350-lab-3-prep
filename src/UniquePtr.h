@@ -59,12 +59,17 @@ public:
 
     bool operator==(const UniquePtr& other) const { return mPtr == other.mPtr; }
 
+    // Releases ownership of the pointer
+    // And returns the pointer
     T* release() {
         T* tempPtr = mPtr;
         mPtr = nullptr;
         return tempPtr;
     }
 
+    // Resets the pointer
+    // Deletes the old pointer
+    // And sets the new pointer
     void reset(T* newPtr = nullptr) {
         T* oldPtr = mPtr;
         mPtr = newPtr;
